@@ -1,0 +1,14 @@
+2022-05-01 18:12:44,090 || INFO - test_editProfile : sandeep
+2022-05-01 18:12:44,090 || INFO - test_editProfile : ['sandeep', 'patel', 'sandeeppatel.resume']
+2022-05-01 18:12:44,112 || DEBUG - test_logging : a debug statement is executed
+2022-05-01 18:12:44,112 || INFO - test_logging : information statement
+2022-05-01 18:12:44,113 || WARNING - test_logging : something is in warning mode
+2022-05-01 18:12:44,113 || ERROR - test_logging : a major error has happened
+2022-05-01 18:12:44,113 || CRITICAL - test_logging : critical issue
+2022-05-01 18:16:13,384 || INFO - test_editProfile : sandeep
+2022-05-01 18:16:13,384 || INFO - test_editProfile : ['sandeep', 'patel', 'sandeeppatel.resume']
+2022-05-01 18:16:13,400 || DEBUG - test_logging : a debug statement is executed
+2022-05-01 18:16:13,400 || INFO - test_logging : information statement
+2022-05-01 18:16:13,400 || WARNING - test_logging : something is in warning mode
+2022-05-01 18:16:13,400 || ERROR - test_logging : a major error has happened
+2022-05-01 18:16:13,400 || CRITICAL - test_logging : critical issue

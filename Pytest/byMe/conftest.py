@@ -19,10 +19,21 @@
     If we want to run it once before the class in here 'conftest.py' we have to provide the scope,
     like this '@pytest.fixture(scope="class")'.
 
-11. If we want to run a test case with three different data, we can do it by parameterizing
-    (ex- file 'conftest.py' method 'crossBrowser' and 'test_fixtureParam.py')
-'''
+11. If we want to send the data from a fixture we can do it by check returning the data as 
+    a list, check method 'dataLoad()' we are using this data in 'test_fixtureData.py' file.
 
+12. If we want to run a test case with three different data, we can do it by parameterizing
+    (ex- file 'conftest.py' method 'crossBrowser' and 'test_fixtureParam.py')
+
+13. To get the report/logs in html file format first install pytest-html using 
+    'pip install pytest-html' then we can use it through command like this- 
+    'py.test --html=report.html' here report.html is the file name and it can be anything.
+
+14. To get the logs in logfile.log, check 'test_logging.py' file.
+
+15. Using the LogIntoHtml class to log the logdata in report.html file check 
+    'test_fixtureData.py' file.
+'''
 import pytest
 
 @pytest.fixture(scope='class')
