@@ -46,13 +46,16 @@ NOTE: Do not add the main method to the solution code.
 //Answer for coding exercise number 29
 public class SimpleCalculator {
 
+    //declaring instance/class variables/fields
     private double firstNumber;
     private double secondNumber;
 
+    //method to access the firstNumber field
     public double getFirstNumber() {
         return this.firstNumber;
     }
-
+    
+    //method to access the secondNumber field
     public double getSecondNumber(){
         return this.secondNumber;
     }
@@ -101,7 +104,7 @@ public class SimpleCalculator {
 
         calculator.setFirstNumber(5.25);
         calculator.setSecondNumber(0);
-        
+
         System.out.println("multiply= " + calculator.getMultiplicationResult());
         System.out.println("divide= " + calculator.getDivisionResult());
     }
