@@ -1,1 +1,1 @@
-Folder which contains My Notes or Programs.
+Folder which contains My Notes and Programs.
