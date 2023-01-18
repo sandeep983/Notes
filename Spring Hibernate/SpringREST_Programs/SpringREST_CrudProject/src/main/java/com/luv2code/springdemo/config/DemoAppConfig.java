@@ -40,13 +40,13 @@ public class DemoAppConfig implements WebMvcConfigurer {
 
 		// set the jdbc driver
 		try {
-			myDataSource.setDriverClass("com.mysql.jdbc.Driver");		
+			myDataSource.setDriverClass("com.mysql.cj.jdbc.Driver");		
 		}
-		catch (PropertyVetoException exc) {
-			throw new RuntimeException(exc);
+		catch (PropertyVetoException e) {
+			throw new RuntimeException(e);
 		}
 		
-		// for sanity's sake, let's log url and user ... just to make sure we are reading the data
+		// log url and user ... just to make sure we are reading the data
 		logger.info("jdbc.url=" + env.getProperty("jdbc.url"));
 		logger.info("jdbc.user=" + env.getProperty("jdbc.user"));
 		
