@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.cosmostaker</groupId>
+	<groupId>com.luv2code</groupId>
 	<artifactId>spring-rest-demo</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
@@ -34,6 +34,13 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
+		</dependency>
+
+		<!-- Add support for JSP ... get rid of Eclipse error -->				 
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>2.3.1</version>
 		</dependency>
 				 
 	</dependencies>
