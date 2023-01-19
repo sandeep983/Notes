@@ -1,12 +1,13 @@
-package com.cosmostaker.springboot.mySpringApp;
+package com.cosmostaker.springboot.cruddemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MySpringAppApplication {
+public class CruddemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MySpringAppApplication.class, args);
+		SpringApplication.run(CruddemoApplication.class, args);
 	}
+
 }
