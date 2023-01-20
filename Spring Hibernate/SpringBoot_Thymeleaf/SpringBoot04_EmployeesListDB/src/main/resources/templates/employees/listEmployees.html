@@ -19,7 +19,7 @@
         </a>
 
         <table class="table table-bordered table-striped">
-            <thead class="table-dark">
+            <thead class="table-dark text-center">
                 <tr>
                     <th>ID</th>
                     <th>First Name</th>
@@ -30,13 +30,13 @@
             </thead>
             <tbody>
                 <tr th:each="employee : ${employees}">
-                    <td th:text="${employee.id}"></td>
-                    <td th:text="${employee.firstName}"></td>
-                    <td th:text="${employee.lastName}"></td>
-                    <td th:text="${employee.email}"></td>
+                    <td th:text="${employee.id}" class="text-center"></td>
+                    <td th:text="${employee.firstName}" class="text-center"></td>
+                    <td th:text="${employee.lastName}" class="text-center"></td>
+                    <td th:text="${employee.email}" class="text-center"></td>
 
                     <!-- Update button -->
-                    <td>
+                    <td class="text-center">
                         <a th:href="@{/employees/update(employeeId=${employee.id})}"
                             class="btn btn-info btn-sm">
                             Update
