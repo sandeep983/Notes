@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cosmostaker.springboot.thymeleafdemo.entity.Employee;
 import com.cosmostaker.springboot.thymeleafdemo.service.IEmployeeService;
@@ -25,6 +26,7 @@ public class EmployeeController {
 
 
     // add mapping for "/list"
+    // To list all employees on home page
     @GetMapping("/list")
     public String listEmployees(Model theModel) {
 
@@ -38,7 +40,10 @@ public class EmployeeController {
     }
 
 
+
+
     // add mapping for "addForm"
+    // To show the add form and add new employee
     @GetMapping("/addForm")
     public String addForm(Model theModel) {
 
@@ -50,8 +55,8 @@ public class EmployeeController {
         return "employees/addForm";
     }
 
-
     // add mapping for "save"
+    // Save button - process the form and save the employee
     @PostMapping("/save")
     public String saveEmployee(Employee theEmployee) {
 
@@ -59,6 +64,39 @@ public class EmployeeController {
         employeeService.save(theEmployee);
 
         // use a redirect to prevent duplicate submissions
+        return "redirect:/employees/list";
+    }
+
+
+
+
+    // add mapping for "update"
+    // To show the addForm and update the employee
+    @GetMapping("/update")
+    public String updateEmployee(@RequestParam("employeeId") int theId, Model theModel) {
+
+        // get the employee from the service
+        Employee theEmployee = employeeService.findById(theId);
+
+        // set employee as a model attribute to pre-populate the form
+        theModel.addAttribute("employee", theEmployee);
+
+        // send over to our form
+        return "employees/addForm";
+    }
+
+
+
+
+    // add mapping for "delete"
+    // To delete the employee
+    @GetMapping("/delete")
+    public String deleteEmployee(@RequestParam("employeeId") int theId) {
+
+        // delete the employee
+        employeeService.deleteById(theId);
+
+        // redirect to /employees/list
         return "redirect:/employees/list";
     }
 }
