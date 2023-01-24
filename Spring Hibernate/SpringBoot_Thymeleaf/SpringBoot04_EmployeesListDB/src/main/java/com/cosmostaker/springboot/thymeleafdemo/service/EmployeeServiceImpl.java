@@ -39,7 +39,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
         	theEmployee = result.get();
         }
         else {
-        	throw new RuntimeException("Did not fint the employee id: " + theId);
+        	throw new RuntimeException("Did not find the employee with id: " + theId);
         }
         
 		return theEmployee;
@@ -54,4 +54,19 @@ public class EmployeeServiceImpl implements IEmployeeService {
     public void deleteById(int theId) {
         employeeRepository.deleteById(theId);
     }    
+
+    @Override
+	public List<Employee> searchBy(String theName) {
+		
+		List<Employee> results = null;
+		
+		if (theName != null && (theName.trim().length() > 0)) {
+			results = employeeRepository.findByFirstNameContainsOrLastNameContainsAllIgnoreCase(theName, theName);
+		}
+		else {
+			results = findAll();
+		}
+		
+		return results;
+	}
 }

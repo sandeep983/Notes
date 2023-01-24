@@ -99,4 +99,23 @@ public class EmployeeController {
         // redirect to /employees/list
         return "redirect:/employees/list";
     }
+
+
+    
+
+    // add mapping for "search"
+    // To search the employee
+    @GetMapping("/search")
+	public String delete(@RequestParam("employeeName") String theName,
+						 Model theModel) {
+		
+		// search employee
+		List<Employee> theEmployees = employeeService.searchBy(theName);
+		
+		// add to the spring model
+		theModel.addAttribute("employees", theEmployees);
+		
+		// send to /employees/list
+		return "/employees/listEmployees";
+	}
 }
