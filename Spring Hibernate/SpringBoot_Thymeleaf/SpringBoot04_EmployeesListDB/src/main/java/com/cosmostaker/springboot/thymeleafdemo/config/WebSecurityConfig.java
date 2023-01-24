@@ -1,55 +1,65 @@
-
 package com.cosmostaker.springboot.thymeleafdemo.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.User.UserBuilder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig {
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    @Bean
+    public InMemoryUserDetailsManager userDetailsManager() {
+    	
+        UserDetails cosmostaker = User.builder()
+            .username("Cosmostaker")
+            .password("{noop}cosmos@123")
+            .roles("EMPLOYEE")
+            .build();
 
-		// add our users for in memory authentication
+        UserDetails admin = User.builder()
+                .username("Admin")
+                .password("{noop}admin@123")
+                .roles("EMPLOYEE", "ADMIN")
+                .build();
+        
+        return new InMemoryUserDetailsManager(cosmostaker, admin);        
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    	
+    	return http
+		.authorizeRequests(configurer ->
+			configurer
+				.antMatchers("/").hasRole("EMPLOYEE")	
+				.antMatchers("/employees/showForm*").hasRole("ADMIN")
+				.antMatchers("/employees/save*").hasRole("ADMIN")
+				.antMatchers("/employees/delete").hasRole("ADMIN")
+				.antMatchers("/employees/**").hasRole("EMPLOYEE")
+				.antMatchers("/resources/**").permitAll())
+				
 		
-		UserBuilder users = User.withDefaultPasswordEncoder();
-		
-		auth.inMemoryAuthentication()
-			.withUser(users.username("Cosmostaker").password("cosmos@123").roles("EMPLOYEE"))
-			.withUser(users.username("Admin").password("admin@123").roles("EMPLOYEE", "ADMIN"));
-	}
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-
-		http.authorizeRequests()
-			.antMatchers("/employees/showForm*").hasRole("ADMIN")
-			.antMatchers("/employees/save*").hasRole("ADMIN")
-			.antMatchers("/employees/delete").hasRole("ADMIN")
-			.antMatchers("/employees/**").hasRole("EMPLOYEE")
-			.antMatchers("/resources/**").permitAll()
-			.and()
-			.formLogin()
+		.formLogin(configurer ->
+			configurer
 				.loginPage("/showLoginPage")
 				.loginProcessingUrl("/authenticateUser")
-				.permitAll()
-			.and()
-			.logout().permitAll()
-			.and()
-			.exceptionHandling().accessDeniedPage("/accessDenied");
+				.permitAll())
 		
-	}
+		.logout(configurer -> 
+			configurer
+				.permitAll())
 		
+		.exceptionHandling(configurer ->
+			configurer
+				.accessDeniedPage("/accessDenied"))
+		
+		.build();        
+    }	
 }
-
-
-
-
-
-
