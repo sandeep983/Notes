@@ -24,13 +24,13 @@ public class DemoSecurityConfig {
         UserDetails mary = User.builder()
                 .username("mary")
                 .password("{noop}test123")
-                .roles("MANAGER")
+                .roles("EMPLOYEE", "MANAGER")
                 .build();
 
         UserDetails susan = User.builder()
                 .username("susan")
                 .password("{noop}test123")
-                .roles("ADMIN")
+                .roles("EMPLOYEE", "ADMIN")
                 .build();
         
         return new InMemoryUserDetailsManager(john, mary, susan);   
@@ -42,8 +42,9 @@ public class DemoSecurityConfig {
     	return http
 		.authorizeRequests(configurer ->
 			configurer
-			.anyRequest()
-			.authenticated())
+			.antMatchers("/").hasRole("EMPLOYEE")
+			.antMatchers("/leaders/**").hasRole("MANAGER")
+			.antMatchers("/systems/**").hasRole("ADMIN"))
 		
 		.formLogin(configurer ->
 			configurer
@@ -54,6 +55,10 @@ public class DemoSecurityConfig {
 		.logout(configurer -> 
 			configurer
 				.permitAll())
+		
+		.exceptionHandling(configurer ->
+			configurer
+				.accessDeniedPage("/accessDenied"))
 		
 		.build();
     }
