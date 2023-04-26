@@ -1,4 +1,6 @@
-// Q. WAP to generate a random number and store it in a variable. The program then takes an input from the user to tell them whether the guess was correct, greater or lesses than the original number. 100-(number of guesses) is the score of the user. The program is expected to terminate once the number is guessed. Number should be between 1-100.
+// Q. WAP to generate a random number and store it in a variable. 
+// The program then takes an input from the user to tell them whether the guess was correct, greater or lesses than the original number. 
+// 100-(number of guesses) is the score of the user. The program is expected to terminate once the number is guessed. Number should be between 1-100.
 
 console.log("\"Number Guessing Game\"\n");
 
