@@ -1,9 +1,0 @@
-#Log all pairs of array
-array = ['a', 'b', 'c', 'd', 'e']
-
-def logAllPairs(list):
-    for item in list:
-        for item2 in list:
-            print(item, item2)
-
-logAllPairs(array) # Quadratic time - O(n^2)
